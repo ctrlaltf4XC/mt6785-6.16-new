@@ -1,0 +1,125 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+/*
+ * TI LMU (Lighting Management Unit) Device Register Map
+ *
+ * Copyright 2017 Texas Instruments
+ *
+ * Author: Milo Kim <milo.kim@ti.com>
+ */
+
+#ifndef __MFD_TI_LMU_REGISTER_H__
+#define __MFD_TI_LMU_REGISTER_H__
+
+#include <linux/bitops.h>
+
+/* LM3631 */
+#define LM3631_REG_DEVCTRL			0x00
+#define LM3631_LCD_EN_MASK			BIT(1)
+#define LM3631_BL_EN_MASK			BIT(0)
+
+#define LM3631_REG_BRT_LSB			0x01
+#define LM3631_REG_BRT_MSB			0x02
+
+#define LM3631_REG_BL_CFG			0x06
+#define LM3631_BL_CHANNEL_MASK			BIT(3)
+#define LM3631_BL_DUAL_CHANNEL			0
+#define LM3631_BL_SINGLE_CHANNEL		BIT(3)
+#define LM3631_MAP_MASK				BIT(5)
+#define LM3631_EXPONENTIAL_MAP			0
+
+#define LM3631_REG_BRT_MODE			0x08
+#define LM3631_MODE_MASK			(BIT(1) | BIT(2) | BIT(3))
+#define LM3631_DEFAULT_MODE			(BIT(1) | BIT(3))
+
+#define LM3631_REG_SLOPE			0x09
+#define LM3631_SLOPE_MASK			0xF0
+#define LM3631_SLOPE_SHIFT			4
+
+#define LM3631_REG_LDO_CTRL1			0x0A
+#define LM3631_EN_OREF_MASK			BIT(0)
+#define LM3631_EN_VNEG_MASK			BIT(1)
+#define LM3631_EN_VPOS_MASK			BIT(2)
+
+#define LM3631_REG_LDO_CTRL2			0x0B
+#define LM3631_EN_CONT_MASK			BIT(0)
+
+#define LM3631_REG_VOUT_CONT			0x0C
+#define LM3631_VOUT_CONT_MASK			(BIT(6) | BIT(7))
+
+#define LM3631_REG_VOUT_BOOST			0x0C
+#define LM3631_REG_VOUT_POS			0x0D
+#define LM3631_REG_VOUT_NEG			0x0E
+#define LM3631_REG_VOUT_OREF			0x0F
+#define LM3631_VOUT_MASK			0x3F
+
+#define LM3631_REG_ENTIME_VCONT			0x0B
+#define LM3631_ENTIME_CONT_MASK			0x70
+
+#define LM3631_REG_ENTIME_VOREF			0x0F
+#define LM3631_REG_ENTIME_VPOS			0x10
+#define LM3631_REG_ENTIME_VNEG			0x11
+#define LM3631_ENTIME_MASK			0xF0
+#define LM3631_ENTIME_SHIFT			4
+
+#define LM3631_MAX_REG				0x16
+
+/* LM3632 */
+#define LM3632_REG_CONFIG1			0x02
+#define LM3632_OVP_MASK				(BIT(5) | BIT(6) | BIT(7))
+#define LM3632_OVP_25V				BIT(6)
+
+#define LM3632_REG_CONFIG2			0x03
+#define LM3632_SWFREQ_MASK			BIT(7)
+#define LM3632_SWFREQ_1MHZ			BIT(7)
+
+#define LM3632_REG_BRT_LSB			0x04
+#define LM3632_REG_BRT_MSB			0x05
+
+#define LM3632_REG_IO_CTRL			0x09
+#define LM3632_PWM_MASK				BIT(6)
+#define LM3632_I2C_MODE				0
+#define LM3632_PWM_MODE				BIT(6)
+
+#define LM3632_REG_ENABLE			0x0A
+#define LM3632_BL_EN_MASK			BIT(0)
+#define LM3632_BL_CHANNEL_MASK			(BIT(3) | BIT(4))
+#define LM3632_BL_SINGLE_CHANNEL			BIT(4)
+#define LM3632_BL_DUAL_CHANNEL			BIT(3)
+
+#define LM3632_REG_BIAS_CONFIG			0x0C
+#define LM3632_EXT_EN_MASK			BIT(0)
+#define LM3632_EN_VNEG_MASK			BIT(1)
+#define LM3632_EN_VPOS_MASK			BIT(2)
+
+#define LM3632_REG_VOUT_BOOST			0x0D
+#define LM3632_REG_VOUT_POS			0x0E
+#define LM3632_REG_VOUT_NEG			0x0F
+#define LM3632_VOUT_MASK			0x3F
+
+#define LM3632_MAX_REG				0x10
+
+/* LM36274 */
+#define LM36274_REG_REV				0x01
+#define LM36274_REG_BL_CFG_1			0x02
+#define LM36274_REG_BL_CFG_2			0x03
+#define LM36274_REG_BRT_LSB			0x04
+#define LM36274_REG_BRT_MSB			0x05
+#define LM36274_REG_BL_EN			0x08
+
+#define LM36274_REG_BIAS_CONFIG_1		0x09
+#define LM36274_EXT_EN_MASK			BIT(0)
+#define LM36274_EN_VNEG_MASK			BIT(1)
+#define LM36274_EN_VPOS_MASK			BIT(2)
+#define LM36274_EN_LCM_MASK			GENMASK(7, 5)
+#define LM36274_EN_LCM_NORMAL_MODE		BIT(7)
+
+#define LM36274_REG_BIAS_CONFIG_2		0x0a
+#define LM36274_REG_BIAS_CONFIG_3		0x0b
+#define LM36274_REG_VOUT_BOOST			0x0c
+#define LM36274_REG_VOUT_POS			0x0d
+#define LM36274_REG_VOUT_NEG			0x0e
+#define LM36274_VOUT_MASK			0x3F
+
+#define LM36274_MAX_REG				0x13
+
+#endif

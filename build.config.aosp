@@ -1,0 +1,24 @@
+# AOSP-style build config for MT6785 begonia
+ARCH=arm64
+LLVM=1
+LLVM_IAS=1
+CLANG_TRIPLE=aarch64-linux-gnu-
+CROSS_COMPILE=aarch64-linux-gnu-
+CROSS_COMPILE_COMPAT=arm-linux-gnueabi-
+
+# Use ccache
+CC=ccache clang
+HOSTCC=ccache clang
+LD=ld.lld
+NM=llvm-nm
+OBJCOPY=llvm-objcopy
+OBJDUMP=llvm-objdump
+READELF=llvm-readelf
+STRIP=llvm-strip
+
+# Kernel config
+DEFCONFIG=defconfig
+
+# Build artifacts
+KERNEL_IMAGE=arch/arm64/boot/Image.gz
+KERNEL_DTBS=arch/arm64/boot/dts/mediatek/mt6785-xiaomi-begonia.dtb
